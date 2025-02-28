@@ -1,4 +1,39 @@
-const express = require('express')
+const express = require('express');
+const cors = require("cors");
+const path = require('path');
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Use Express to publish static HTML, CSS, and JavaScript files that run in the browser.
+app.use(express.static(path.join(__dirname, 'static')));
+app.use(cors({ origin: '*' }));
+
+app.get('/roll', (request, response) => {
+    console.log('Calling "/roll" on the Node.js server.');
+    response.json({ roll: Math.floor(Math.random() * 6) + 1 });
+});
+
+// Custom 404 page.
+app.use((request, response) => {
+    response.status(404);
+    response.sendFile(path.join(__dirname, 'static', '404.html'));
+});
+
+// Custom 500 page.
+/*app.use((err, request, response, next) => {
+    console.error(err.message);
+    response.status(500);
+    response.sendFile(path.join(__dirname, 'static', '500.html'));
+});*/
+
+app.listen(port, () => console.log(
+    `Express started at "http://localhost:${port}"\n` +
+    `press Ctrl-C to terminate.`
+));
+
+
+/*const express = require('express')
 app = express()
 
 const cors = require("cors")
@@ -144,7 +179,7 @@ const favoritePlaces = require('./FavoritePlaces.json');
 // Create a route that serves the JSON data
 app.get('/api/favorite-places', (req, res) => {
   res.json(favoritePlaces);
-}); */
+});
 
 
 
@@ -166,4 +201,4 @@ app.use((err, request, response, next) => {
 app.listen(port, () => console.log(
   `Express started at \"http://localhost:${port}\"\n` +
   `press Ctrl-C to terminate.`)
-)
+) */
