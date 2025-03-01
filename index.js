@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'static')));
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'https://polite-island-01e695b10.4.azurestaticapps.net/' }));
 
 app.get('/roll', (request, response) => {
     console.log('Calling "/roll" on the Node.js server.');
