@@ -5,7 +5,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'static')));
-app.use(cors({ origin: 'https://server-dice-roller-node-js-ss-e9fra8g7bnbxe0aa.centralus-01.azurewebsites.net/' }));
+const allowedOrigin = 'https://polite-island-01e695b10.4.azurestaticapps.net/';
+app.use(cors({
+  origin: allowedOrigin
+}));
 
 app.get('/roll', (request, response) => {
     console.log('Calling "/roll" on the Node.js server.');
