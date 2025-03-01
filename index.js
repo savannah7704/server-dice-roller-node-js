@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'static')));
-const allowedOrigin = 'https://polite-island-01e695b10.4.azurestaticapps.net/';
+const allowedOrigin = 'https://polite-island-01e695b10.4.azurestaticapps.net';
 app.use(cors({
   origin: allowedOrigin
 }));
